@@ -1,0 +1,34 @@
+GET http://localhost:3001/api/threads/newest20
+
+###
+
+POST http://localhost:3001/api/threads
+Content-Type: application/json
+
+{
+    "title": "Hello title!"
+}
+
+###
+
+POST http://localhost:3001/api/new-thread-with-message
+Content-Type: application/json
+
+{
+    "title": "Thread with a message 2",
+    "text": "This is the message part of the thread 2."
+}
+
+###
+
+POST http://localhost:3001/api/message
+Content-Type: application/json
+
+{
+    "thread_id": 15,
+    "text": "Message for some thread."
+}
+
+###
+
+GET http://localhost:3001/api/thread/15
