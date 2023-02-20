@@ -37,7 +37,7 @@ app.get("/api/threads/newest20", async (_req: Request, res: Response) => {
     const { rows } = await client.query(sql);
     const todos = rows;
     client.release();
-    res.send(todos)
+    res.json(todos);
   } catch (error) {
     console.log(error);
   }
