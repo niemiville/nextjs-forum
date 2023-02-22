@@ -43,7 +43,7 @@ app.get("/api/threads/newest20", async (_req: Request, res: Response) => {
   }
 });
 
-app.get("/api/thread/:id", async (req: Request, res: Response) => {
+app.get("/api/threads/:id", async (req: Request, res: Response) => {
   const threadTitleQuery = "SELECT title FROM thread WHERE id = $1;";
   const query = "SELECT * FROM message WHERE thread_id = $1 ORDER BY id ASC;"; //Maybe add LIMIT
   const values = [req.params.id];
@@ -56,7 +56,7 @@ app.get("/api/thread/:id", async (req: Request, res: Response) => {
     var { rows } = await client.query(query, values);
 
     client.release();
-    res.send({title, rows })
+    res.json({ title, rows })
   } catch (error) {
     console.log(error);
   }
@@ -76,7 +76,7 @@ app.post("/api/threads", async (req: Request, res: Response) => {
   }
 });
 
-app.post("/api/new-thread-with-message", async (req: Request, res: Response) => {
+app.post("/api/threads/new-thread-with-message", async (req: Request, res: Response) => {
   try {
     const threadQuery = "INSERT INTO thread(title, creation_timestamp) VALUES($1, current_timestamp) RETURNING *;";
     const threadValues = [req.body.title];
