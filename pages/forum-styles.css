@@ -18,3 +18,15 @@ th {
 /* h1 {
     text-align: center;
 } */
+
+.threadModal input {
+    margin-bottom: 5px;
+}
+
+.threadModal textarea {
+    margin-bottom: 5px;
+}
+
+/* body {
+    background-color: white;
+} */

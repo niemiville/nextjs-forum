@@ -16,22 +16,26 @@ function ForumModal({ onSubmit }: ForumModalProps) {
   };
 
   return (
-    <div>
-      <h2>New Thread</h2>
+    <div className="threadModal">
+      <h2>New thread</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
+        <label htmlFor="title" />
         <input
           type="text"
           id="title"
+          placeholder="Title"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
         />
-        <label htmlFor="body">Body</label>
+        <br/>
+        <label htmlFor="body" />
         <textarea
           id="body"
+          placeholder="Body"
           value={body}
           onChange={(event) => setBody(event.target.value)}
         />
+        <br/>
         <button type="submit">Submit</button>
       </form>
     </div>
