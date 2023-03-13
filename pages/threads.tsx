@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import ForumModal from "../components/ForumModal";
 import { addNewThreadWithMessage } from "./api/services/services";
+import { formatDate } from "./api/utils/format-date"
 
 export default function Threads(props: { posts: any[]; }) {
   const [showModal, setShowModal] = useState(false);
@@ -35,7 +36,7 @@ export default function Threads(props: { posts: any[]; }) {
           <tr key={post.id}>
             <td>{post.id}</td> 
             <td><Link href={`/thread/${post.id}`}>{post.title}</Link></td>
-            <td>{post.creation_timestamp}</td>
+            <td>{formatDate(post.creation_timestamp)}</td>
           </tr>
         )
       })}

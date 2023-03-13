@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import ForumMessageModal from "../../components/ForumMessageModal";
 import { addNewMessageToThread } from "../api/services/services";
+import { formatDate } from "../api/utils/format-date"
 
 export default function Thread(props: { posts: { "title": any, "rows": any[] } }) {
   const [showModal, setShowModal] = useState(false);
@@ -21,34 +22,16 @@ export default function Thread(props: { posts: { "title": any, "rows": any[] } }
         <ForumMessageModal onSubmit={handleNewThreadSubmit} />
       )}
       <h3>{props.posts.title}</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>message id</th>
-            <th>thread id</th>
-            <th>user id</th>
-            <th>text</th>
-            <th>likes</th>
-            <th>dislikes</th>
-            <th>creation timestamp</th>
-          </tr>
-        </thead>
-      <tbody>
-      {props.posts.rows.map(post => {
-        return (
-          <tr key={post.id}>
-            <td>{post.id}</td> 
-            <td>{post.thread_id}</td>
-            <td>{post.user_id}</td>
-            <td>{post.text}</td>
-            <td>{post.likes}</td>
-            <td>{post.dislikes}</td>
-            <td>{post.creation_timestamp}</td>
-          </tr>
-        )
-      })}
-      </tbody>
-      </table>
+      <div>
+        {props.posts.rows.map(post => {
+          return (
+            <div key={post.id}>
+              <div className="postContainer"><div className="postIdDate">{post.id} {formatDate(post.creation_timestamp)}</div><div className="postLikes">Likes: {post.likes} Dislikes: {post.likes}</div></div>
+              <div className="postText">{post.text}</div>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
